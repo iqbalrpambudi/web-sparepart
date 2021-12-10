@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Home extends CI_Controller
 {
     // Fungsi yg otomatis dijalankan untuk semua fungsi di dalam class
@@ -57,8 +59,10 @@ class Home extends CI_Controller
         $total['total'] = $this->Product_model->total_min_data();
 
         // Mengambil total pada cardstat
-        $total['total_out_tool'] = $this->Product_model->get_out_tool();
-        $total['total_in_tool'] = $this->Product_model->get_in_tool();
+        // $total['total_out_tool'] = $this->Product_model->get_out_tool();
+        // $total['total_in_tool'] = $this->Product_model->get_in_tool();
+        $total['model'] = $this->Product_model->get_model_stock();
+        $total['model_limit'] = $this->Product_model->get_model_limit_stock();
         $total['total_limit_stock'] = $this->Product_model->total_min_data();
         $total['total_product_ready'] = $this->Product_model->total_product_ready();
 

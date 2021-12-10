@@ -138,16 +138,25 @@ class Product_model extends CI_Model
         }
 
         // Fungsi untuk menjumlahkan out_tool
-        public function get_out_tool()
+        public function get_model_stock()
         {
-                return $this->db->query('SELECT count(out_tool) as out_tool FROM `db_sparepart`')->result_array();
+                return $this->db->query('SELECT sum(stock_end) as total,model FROM `db_sparepart` group by model')->result_array();
         }
+        public function get_model_limit_stock()
+        {
+                return $this->db->query('SELECT sum(min_qty) as limit_stock,model FROM `db_sparepart` group by model')->result_array();
+        }
+        // // Fungsi untuk menjumlahkan out_tool
+        // public function get_out_tool()
+        // {
+        //         return $this->db->query('SELECT count(out_tool) as out_tool FROM `db_sparepart`')->result_array();
+        // }
 
-        // Fungsi untuk menjumlahkan in_tool
-        public function get_in_tool()
-        {
-                return $this->db->query('SELECT count(in_tool) as in_tool FROM `db_sparepart`')->result_array();
-        }
+        // // Fungsi untuk menjumlahkan in_tool
+        // public function get_in_tool()
+        // {
+        //         return $this->db->query('SELECT count(in_tool) as in_tool FROM `db_sparepart`')->result_array();
+        // }
 
         // Fungsi untuk menjumlahkan sparepart ready
         public function total_product_ready()
